@@ -20,7 +20,7 @@ class SliderViewController: UIViewController {
     @IBOutlet var sliderGame: UISlider!
     
     var playerLabel = String()
-    var playerScore = String()
+    var playerScore = Int()
     
     
     //Optionals
@@ -81,7 +81,7 @@ class SliderViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         playerName.text = playerLabel
-        scoreValue.text = playerScore
+        scoreValue.text = String(playerScore)
         roundValue.text = "0"
         generateRandomNumber()
     }
@@ -94,8 +94,13 @@ class SliderViewController: UIViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "ReturnList"{
             let ReturnViewController : ChecklistViewController = segue.destinationViewController as! ChecklistViewController
+            if(score > playerScore){
+                playerScore = score
+            }
+                ReturnViewController.playerScore = playerScore
             print("scored: \(score)")
-            ReturnViewController.playerScore = score
+            
+            
             
         }
     }

@@ -12,7 +12,6 @@ class ChecklistViewController: UITableViewController, AddItemViewControllerDeleg
     
     var selectedItem = ""
     var playerScore = 0
-    var scoreUpdated = 0
     var items: [ChecklistItem]
     
       
@@ -55,8 +54,7 @@ class ChecklistViewController: UITableViewController, AddItemViewControllerDeleg
   
   override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     if let cell = tableView.cellForRowAtIndexPath(indexPath) {
-      let item = items[indexPath.row]
-        let scoreSelectPlayer = Int(item.score)
+      let item = items[indexPath.row]        
         
       configureCheckmarkForCell(cell, withChecklistItem: item)
     }
@@ -73,11 +71,13 @@ class ChecklistViewController: UITableViewController, AddItemViewControllerDeleg
     let label = cell.viewWithTag(1002) as! UILabel
     let stringPlayerScore = String(playerScore)
     let itemScore = Int(item.score)
-    if(playerScore > itemScore){
+    /*if(playerScore > itemScore){
         label.text = stringPlayerScore
     }else{
         label.text = item.score
-    }
+    }*/
+    item.score = String(playerScore)
+    label.text = item.score
   }
   
   override func viewDidLoad() {
@@ -129,6 +129,7 @@ class ChecklistViewController: UITableViewController, AddItemViewControllerDeleg
     if(segue.identifier == "GameOn"){
         let DestViewController : SliderViewController = segue.destinationViewController as! SliderViewController
         DestViewController.playerLabel = selectedItem
+        DestViewController.playerScore = playerScore
     }
   }
 }

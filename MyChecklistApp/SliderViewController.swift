@@ -21,6 +21,9 @@ class SliderViewController: UIViewController {
     
     var playerLabel = String()
     var playerScore = Int()
+    var playerScoreStr = String()
+    
+    weak var selectedItem : ChecklistItem?
     
     
     //Optionals
@@ -57,16 +60,17 @@ class SliderViewController: UIViewController {
              self.scoreValue.text = scoreString   
             }
         }
+        currentRound += 1
+        roundValue.text = String(currentRound)
         actionSheetController.addAction(okAction)
         self.presentViewController(actionSheetController, animated: true, completion: nil)
         
         
     }
     
-    @IBAction func startoverPressed(sender: AnyObject) {
-        startNewGame()
+    @IBAction func startOverPressed(sender: AnyObject) {
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
-    
     
     func generateRandomNumber() -> Void{
         randomNo = 1 + Int(arc4random_uniform(100))
@@ -75,7 +79,7 @@ class SliderViewController: UIViewController {
         targetValue = randomNo
     }
     func  startNewRound() -> Void{
-        currentRound += 1
+        
         generateRandomNumber()
     }
     func startNewGame() -> Void{
@@ -85,9 +89,12 @@ class SliderViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         playerName.text = playerLabel
-        scoreValue.text = String(playerScore)
+        scoreValue.text = playerScoreStr
         roundValue.text = "0"
         generateRandomNumber()
+    }
+    override func viewWillAppear(animated: Bool) {
+        selectedItem?.score = String(score)
     }
     
     override func didReceiveMemoryWarning() {
@@ -96,17 +103,10 @@ class SliderViewController: UIViewController {
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "ReturnList"{
             let ReturnViewController : ChecklistViewController = segue.destinationViewController as! ChecklistViewController
             if(score > playerScore){
                 playerScore = score
             }
                 ReturnViewController.playerScore = playerScore
-            print("scored: \(score)")
-            
-            
-            
-        }
     }
-
 }

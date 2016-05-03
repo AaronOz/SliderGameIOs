@@ -13,7 +13,8 @@ class ChecklistViewController: UITableViewController, AddItemViewControllerDeleg
     var selectedItem = ""
     var playerScore = 0
     var items: [ChecklistItem]
-    
+    var indexPathCell : Int?
+    var cellLabel : UILabel?
       
   required init?(coder aDecoder: NSCoder) {
     items = [ChecklistItem]()
@@ -25,7 +26,7 @@ class ChecklistViewController: UITableViewController, AddItemViewControllerDeleg
     items.append(checklistItem)
     super.init(coder: aDecoder)
   }
-  
+    
   func addItem(item: ChecklistItem) {
     let nextIndex = items.count
     let indexPath = NSIndexPath(forRow: nextIndex, inSection: 0)
@@ -33,6 +34,16 @@ class ChecklistViewController: UITableViewController, AddItemViewControllerDeleg
     tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
   }
   
+    @IBAction func unwindToVC(segue:UIStoryboardSegue){
+        if let svc = segue.sourceViewController as? SliderViewController{
+            if(svc.score > playerScore){
+                playerScore = svc.score
+            }
+            items[indexPathCell!].score = String(playerScore)
+            cellLabel?.text = items[indexPathCell!].score
+        }
+    }
+    
   override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
     
     items.removeAtIndex(indexPath.row)
@@ -54,8 +65,8 @@ class ChecklistViewController: UITableViewController, AddItemViewControllerDeleg
   
   override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     if let cell = tableView.cellForRowAtIndexPath(indexPath) {
-      let item = items[indexPath.row]        
-        
+      let item = items[indexPath.row]
+        indexPathCell = indexPath.row
       configureCheckmarkForCell(cell, withChecklistItem: item)
     }
     tableView.deselectRowAtIndexPath(indexPath, animated: true)    
@@ -69,12 +80,13 @@ class ChecklistViewController: UITableViewController, AddItemViewControllerDeleg
   
   func configureCheckmarkForCell(cell: UITableViewCell, withChecklistItem item: ChecklistItem) {
     let label = cell.viewWithTag(1002) as! UILabel
-    item.score = String(playerScore)
+    //item.score = String(playerScore)
     label.text = item.score
+    cellLabel = label
   }
   
   override func viewDidLoad() {
-    super.viewDidLoad()    
+    super.viewDidLoad()
     // Do any additional setup after loading the view, typically from a nib.
   }
 
@@ -100,6 +112,8 @@ class ChecklistViewController: UITableViewController, AddItemViewControllerDeleg
     }
     dismissViewControllerAnimated(true, completion: nil)
   }
+    
+    
   
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
     if segue.identifier == "AddItem" {
@@ -119,7 +133,11 @@ class ChecklistViewController: UITableViewController, AddItemViewControllerDeleg
     if(segue.identifier == "GameOn"){
         let DestViewController : SliderViewController = segue.destinationViewController as! SliderViewController
         DestViewController.playerLabel = selectedItem
-        DestViewController.playerScore = playerScore
+        DestViewController.playerScoreStr = (cellLabel?.text)!
+        if let indexPath = tableView.indexPathForCell(sender as! UITableViewCell) {
+            DestViewController.selectedItem = items[indexPath.row]
+        }
+        
     }
   }
 }

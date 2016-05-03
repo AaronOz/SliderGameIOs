@@ -16,7 +16,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="detailDisclosureButton" indentationWidth="10" reuseIdentifier="ChecklistItem" id="1zx-dj-E49">
-                                <rect key="frame" x="0.0" y="28" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1zx-dj-E49" id="tzS-RS-pCC">
                                     <rect key="frame" x="0.0" y="0.0" width="533" height="43"/>
@@ -38,7 +38,7 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <segue destination="TI1-pH-9Rr" kind="presentation" identifier="editItem" trigger="accessoryAction" id="zac-tO-ror"/>
-                                    <segue destination="eWj-qQ-3KN" kind="presentation" identifier="GameOn" id="VyN-Qp-BCq"/>
+                                    <segue destination="eWj-qQ-3KN" kind="modal" identifier="GameOn" id="VyN-Qp-BCq"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -120,8 +120,8 @@
                                 <rect key="frame" x="20" y="329" width="71" height="30"/>
                                 <state key="normal" title="Start Over"/>
                                 <connections>
-                                    <action selector="startoverPressed:" destination="eWj-qQ-3KN" eventType="touchUpInside" id="jYm-i4-r0P"/>
-                                    <segue destination="jN2-KL-CrN" kind="show" identifier="ReturnList" id="LUF-jK-J3q"/>
+                                    <action selector="startOverPressed:" destination="eWj-qQ-3KN" eventType="touchUpInside" id="iLL-Sh-6Ch"/>
+                                    <segue destination="FCz-zI-Rrn" kind="unwind" unwindAction="unwindToVC:" id="s4W-Oq-CfZ"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoLight" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZKa-gd-EhQ">
@@ -189,6 +189,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pnB-0I-K8C" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="FCz-zI-Rrn" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1054" y="1206"/>
         </scene>
@@ -204,7 +205,7 @@
                             <tableViewSection id="qSr-e7-D0I">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="CAZ-0e-qEb">
-                                        <rect key="frame" x="0.0" y="35" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="99" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="CAZ-0e-qEb" id="cfh-gz-raN">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
@@ -290,6 +291,5 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="Fni-ct-ceM"/>
-        <segue reference="LUF-jK-J3q"/>
     </inferredMetricsTieBreakers>
 </document>

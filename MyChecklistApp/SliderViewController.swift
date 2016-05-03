@@ -52,10 +52,14 @@ class SliderViewController: UIViewController {
         let okAction = UIAlertAction(title: "Ok", style: .Cancel) { action -> Void in
             self.generateRandomNumber()
             let scoreString = String(self.score)
-            self.scoreValue.text = scoreString
+            
+            if(self.score > self.playerScore){
+             self.scoreValue.text = scoreString   
+            }
         }
         actionSheetController.addAction(okAction)
         self.presentViewController(actionSheetController, animated: true, completion: nil)
+        
         
     }
     

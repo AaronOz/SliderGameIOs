@@ -19,7 +19,7 @@ class ChecklistViewController: UITableViewController, AddItemViewControllerDeleg
     items = [ChecklistItem]()
     
     let checklistItem = ChecklistItem()
-    checklistItem.text = "Brush my teeth"
+    checklistItem.text = "Aaron"
     checklistItem.score = "0"
     checklistItem.checked = true
     items.append(checklistItem)
@@ -69,22 +69,12 @@ class ChecklistViewController: UITableViewController, AddItemViewControllerDeleg
   
   func configureCheckmarkForCell(cell: UITableViewCell, withChecklistItem item: ChecklistItem) {
     let label = cell.viewWithTag(1002) as! UILabel
-    let stringPlayerScore = String(playerScore)
-    let itemScore = Int(item.score)
-    /*if(playerScore > itemScore){
-        label.text = stringPlayerScore
-    }else{
-        label.text = item.score
-    }*/
     item.score = String(playerScore)
     label.text = item.score
   }
   
   override func viewDidLoad() {
-    super.viewDidLoad()
-    
-    print("\(playerScore)")
-    
+    super.viewDidLoad()    
     // Do any additional setup after loading the view, typically from a nib.
   }
 

@@ -39,13 +39,13 @@ class SliderViewController: UIViewController {
         print("target \(targetValue) - currentval \(currentValue) ")
         if(difference == 0){
             title = "Perfect"
-            score += 50
+            score += 30
         } else if(difference < 5){
             title = "You almost had it"
-            score += 39
+            score += 15
         } else if(difference < 10){
             title = "Pretty good"
-            score += 22
+            score += 5
         }else{
             title = "Not even close"
         }

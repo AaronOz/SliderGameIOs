@@ -1,9 +1,9 @@
 //
-//  ChecklistItem.swift
+//  AppDelegate.swift
 //  MyChecklistApp
 //
-//  Created by x0163855 on 3/29/16.
-//  Copyright © 2016 Martz. All rights reserved.
+//  Created by Aaron Delgado on 15/03/16.
+//  Copyright © 2016 Aarond. All rights reserved.
 //
 
 import Foundation

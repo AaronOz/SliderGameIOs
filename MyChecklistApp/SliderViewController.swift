@@ -1,9 +1,9 @@
 //
-//  SliderViewController.swift
+//  AppDelegate.swift
 //  MyChecklistApp
 //
-//  Created by Aaron Delgado on 5/1/16.
-//  Copyright © 2016 Martz. All rights reserved.
+//  Created by Aaron Delgado on 15/03/16.
+//  Copyright © 2016 Aarond. All rights reserved.
 //
 
 import UIKit
@@ -36,7 +36,7 @@ class SliderViewController: UIViewController {
         var currentValue : Int = Int(sliderGame.value)
         var difference = abs(targetValue - currentValue)
         var title: String
-        print("target \(targetValue) - currentval \(currentValue) ")
+        //print("target \(targetValue) - currentval \(currentValue) ")
         if(difference == 0){
             title = "Perfect"
             score += 30
@@ -65,7 +65,6 @@ class SliderViewController: UIViewController {
         actionSheetController.addAction(okAction)
         self.presentViewController(actionSheetController, animated: true, completion: nil)
         
-        
     }
     
     @IBAction func startOverPressed(sender: AnyObject) {
@@ -88,6 +87,7 @@ class SliderViewController: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        //Catch the data from CheckListViewController
         playerName.text = playerLabel
         scoreValue.text = playerScoreStr
         roundValue.text = "0"
@@ -100,13 +100,5 @@ class SliderViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-    
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-            let ReturnViewController : ChecklistViewController = segue.destinationViewController as! ChecklistViewController
-            if(score > playerScore){
-                playerScore = score
-            }
-                ReturnViewController.playerScore = playerScore
     }
 }

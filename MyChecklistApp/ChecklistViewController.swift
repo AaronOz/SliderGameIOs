@@ -2,8 +2,8 @@
 //  ViewController.swift
 //  MyChecklistApp
 //
-//  Created by Mario G on 15/03/16.
-//  Copyright © 2016 Martz. All rights reserved.
+//  Created by Aaron D. on 15/03/16.
+//  Copyright © 2016 Aarond. All rights reserved.
 //
 
 import UIKit
@@ -21,7 +21,7 @@ class ChecklistViewController: UITableViewController, AddItemViewControllerDeleg
     
     let checklistItem = ChecklistItem()
     checklistItem.text = "Aaron"
-    checklistItem.score = "0"
+    checklistItem.score = "10"
     checklistItem.checked = true
     items.append(checklistItem)
     super.init(coder: aDecoder)
@@ -33,14 +33,15 @@ class ChecklistViewController: UITableViewController, AddItemViewControllerDeleg
     items.append(item)
     tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
   }
-  
+  //Catch data from SliderViewController without segue
     @IBAction func unwindToVC(segue:UIStoryboardSegue){
         if let svc = segue.sourceViewController as? SliderViewController{
+            //If the score is higher to old Score
             if(svc.score > playerScore){
                 playerScore = svc.score
             }
             items[indexPathCell!].score = String(playerScore)
-            cellLabel?.text = items[indexPathCell!].score
+            cellLabel?.text = items[indexPathCell!].score //Selected cell
         }
     }
     
@@ -80,7 +81,6 @@ class ChecklistViewController: UITableViewController, AddItemViewControllerDeleg
   
   func configureCheckmarkForCell(cell: UITableViewCell, withChecklistItem item: ChecklistItem) {
     let label = cell.viewWithTag(1002) as! UILabel
-    //item.score = String(playerScore)
     label.text = item.score
     cellLabel = label
   }

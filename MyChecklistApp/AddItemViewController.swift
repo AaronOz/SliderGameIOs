@@ -1,9 +1,9 @@
 //
-//  AddItemViewController.swift
+//  AppDelegate.swift
 //  MyChecklistApp
 //
-//  Created by Mario G on 12/04/16.
-//  Copyright © 2016 Martz. All rights reserved.
+//  Created by Aaron Delgado on 15/03/16.
+//  Copyright © 2016 Aarond. All rights reserved.
 //
 
 import UIKit
